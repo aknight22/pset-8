@@ -1,3 +1,8 @@
+//Allow players to keep score (i.e., how many games has each player won).
+//Allow players to determine who goes first (instead of X always going first).
+
+
+
 ///////////////////// CONSTANTS /////////////////////////////////////
 const winningConditions = [
   [0, 1, 2],
