@@ -18,13 +18,17 @@ const winningConditions = [
 let board;
 let turn;
 let win;
+let xwins = 0;
+let owins = 0;
+let ties = 0;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");   // grab the subheader
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
 document.getElementById("board").onclick = takeTurn;
-document.getElementById("reset-button").onclick = init
+document.getElementById("reset-button").onclick = init;
+document.getElementById("reset-score").onclick = resetScore;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
@@ -33,7 +37,19 @@ function init() {
     "", "", ""
   ];
 
-  turn = "X";
+  do {
+    var player1 = window.prompt("Who goes first: X or O?")
+    player1 = player1.toLowerCase;
+    if (player1 === null) {
+      turn = "X";
+      break;
+    } else if (player1 === "x"){
+      turn = "X";
+    } else if (player1 === "o"){
+      turn = "O";
+  }
+} while (player1 !== "x" && player1 !== "o");
+
   win = null;
 
   render();
@@ -43,6 +59,17 @@ function render() {
   board.forEach(function(mark, index) {
     squares[index].textContent = mark;
   });
+  if (win === "X") {
+    xwins = xwins + 1;
+  } else if (win === "O") {
+    owins = owins +1;
+  } else if (win === "T") {
+    ties = ties + 1;
+  }
+
+  xscore.innerHTML = xiwns;
+  oscore.innerHTML = owins;
+  ties.innerHTML = ties;
 
   message.textContent =
     win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
