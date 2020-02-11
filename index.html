@@ -13,24 +13,33 @@
     <title>Tic | Tac | Toe</title>
   </head>
   <body>
-    <h1>tic | tac | toe</h1>
+    <h1>Tic | Tac | Toe</h1>
+      <table id = "table">
+        <tr>
+          <th class = "wins">X Wins</th>
+          <th class = "wins"># of ties</th>
+          <th class = "wins">O Wins</th>
+        </tr>
+        <tr>
+          <td id="xscore">0</td>
+          <td id="tiescore">0</td>
+          <td id="oscore">0</td>
+        </tr>
+      </table>
+      <div class="container column">
+        <h2>Turn: X</h2>
+        <div class="container wrap" id="board">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
 
-<div class="container column">
-  <h2>Turn: X</h2>
-
-  <div class="container wrap" id="board">
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-  </div>
-
-  <div id="reset-button">Play Again!</div>
-</div>
+      <div id="reset-button">Play Again!</div>
   </body>
 </html>

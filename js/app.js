@@ -38,8 +38,8 @@ function init() {
   ];
 
   do {
-    var player1 = window.prompt("Who goes first: X or O?")
-    player1 = player1.toLowerCase;
+    var player1 = prompt("Who goes first: X or O?")
+    player1 = player1.toLowerCase();
     if (player1 === null) {
       turn = "X";
       break;
@@ -67,9 +67,9 @@ function render() {
     ties = ties + 1;
   }
 
-  xscore.innerHTML = xiwns;
-  oscore.innerHTML = owins;
-  ties.innerHTML = ties;
+   document.getElementById("xscore") = xwins;
+   document.getElementById("oscore") = owins;
+   document.getElementById("tiesscore").innerHTML = ties;
 
   message.textContent =
     win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
