@@ -116,4 +116,3 @@ function resetScoreboard() {
     oscore.innerHTML = owins
     tiescore.innerHTML = ties
 }
-i hate commits
