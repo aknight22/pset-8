@@ -116,3 +116,4 @@ function resetScoreboard() {
     oscore.innerHTML = owins
     tiescore.innerHTML = ties
 }
+lin 
