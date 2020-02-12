@@ -1,8 +1,3 @@
-//Allow players to keep score (i.e., how many games has each player won).
-//Allow players to determine who goes first (instead of X always going first).
-
-
-
 ///////////////////// CONSTANTS /////////////////////////////////////
 const winningConditions = [
   [0, 1, 2],
@@ -14,21 +9,25 @@ const winningConditions = [
   [0, 4, 8],
   [2, 4, 6]
 ];
+
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let board;
 let turn;
 let win;
+let determine_first_player;
 let xwins = 0;
 let owins = 0;
-let ties = 0;
+let ties= 0
+
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
-const message = document.querySelector("h2");   // grab the subheader
+const message = document.querySelector("h2");
+
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
-document.getElementById("reset-score").onclick = resetScore;
+document.getElementById("reset-scoreboard").onclick = resetScoreboard;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
@@ -38,17 +37,18 @@ function init() {
   ];
 
   do {
-    var player1 = prompt("Who goes first: X or O?")
-    player1 = player1.toLowerCase();
-    if (player1 === null) {
+    var first_Player = prompt("Enter X or O to determine who goes first: ");
+    if (first_Player === null) {
       turn = "X";
       break;
-    } else if (player1 === "x"){
+    } else if (first_Player === "X" || first_Player === "x") {
       turn = "X";
-    } else if (player1 === "o"){
+    } else if (first_Player === "O" || first_Player === "o") {
       turn = "O";
-  }
-} while (player1 !== "x" && player1 !== "o");
+    } else {
+      determine_first_player = L;
+    }
+  } while (first_Player !== "X" && first_Player !== "x" && first_Player !== "O" && first_Player !== "o");
 
   win = null;
 
@@ -60,17 +60,17 @@ function render() {
     squares[index].textContent = mark;
   });
   if (win === "X") {
-    xwins = xwins + 1;
-  } else if (win === "O") {
-    owins = owins +1;
-  } else if (win === "T") {
-    ties = ties + 1;
+    xwins = xwins + 1
   }
-
-   document.getElementById("xscore") = xwins;
-   document.getElementById("oscore") = owins;
-   document.getElementById("tiesscore").innerHTML = ties;
-
+  else if (win === "O") {
+    owins = owins + 1
+  }
+  else if (win === "T") {
+    ties = ties + 1
+  }
+  xscore.innerHTML = xwins
+  oscore.innerHTML = owins
+  tiescore.innerHTML = ties
   message.textContent =
     win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
 }
@@ -98,11 +98,21 @@ function getWinner() {
     if (
       board[condition[0]] &&
       board[condition[0]] === board[condition[1]] &&
-      board[condition[1]] === board[condition[2]]
-    ) {
-      winner = board[condition[0]];
+      board[condition[0]] === board[condition[2]]
+    ){
+        winner = board[condition[0]];
     }
   });
 
   return winner ? winner : board.includes("") ? null : "T";
+}
+
+function resetScoreboard() {
+    xwins = 0;
+    owins = 0;
+    ties = 0;
+
+    xscore.innerHTML = xwins
+    oscore.innerHTML = owins
+    tiescore.innerHTML = ties
 }
